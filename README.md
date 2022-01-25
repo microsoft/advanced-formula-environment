@@ -11,8 +11,8 @@
 ### Formula Formatting
 The advanced formula environment will automatically layout formulas listed in Manager view to fit the screen, but this only changes the view and does not modify the stored formula.
 The formula text can be formatted using the full screen formula editor. The add-in will indent the formula to fit within the available screen width.
-![Formatting](https://user-images.githubusercontent.com/4489219/151000609-fb7374cd-8d65-4e02-9608-87ec2a9195cc.gif)
 
+![Formatting](https://user-images.githubusercontent.com/4489219/151000609-fb7374cd-8d65-4e02-9608-87ec2a9195cc.gif)
 
 
 ## Contributing
