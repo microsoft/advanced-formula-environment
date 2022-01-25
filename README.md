@@ -1,18 +1,33 @@
 # Advanced formula environment, a Microsoft Garage project
 
+Create and edit named formulas using a powerful formula editor. With the advanced formula environment you can:
+- Write named formulas using an editor that supports inline errors, intellisense, comments, and more.
+- Indent formulas, making them easier to read.
+- Edit all named formulas using a single code editor.
+- Quickly reuse LAMBDA formulas by importing them from GitHub gists, or by copying them for other workbooks.
+
+The advanced formula environment works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store.
+
+This repository contains documentation and examples only.
+
 ## Features
 
 ### Manager View
+The default view is Manager view, which displays named formulas in the workbook. Sheet-scoped names are not displayed.
 
-### Editor View
-
-### Import
+### Formula Editing
+The formula editor includes intellisense, inline errors, semantic renaming, and more.
+![Editing](https://user-images.githubusercontent.com/4489219/151023910-384da066-693f-4ef9-b249-540320fde6e3.gif)
 
 ### Formula Formatting
 The advanced formula environment will automatically layout formulas listed in Manager view to fit the screen, but this only changes the view and does not modify the stored formula.
 The formula text can be formatted using the full screen formula editor. The add-in will indent the formula to fit within the available screen width.
 
 ![Formatting](https://user-images.githubusercontent.com/4489219/151000609-fb7374cd-8d65-4e02-9608-87ec2a9195cc.gif)
+
+### Import
+
+### Editor View
 
 
 ## Contributing
