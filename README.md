@@ -13,10 +13,17 @@ This repository contains documentation and examples only.
 ## Features
 
 ### Manager View
-The default view is Manager view, which displays named formulas in the workbook. Sheet-scoped names are not displayed.
+The default view is Manager view, which lists named formulas in the workbook. Sheet-scoped names are not displayed. Names can be created and edited inline, or by using a full screen editor.
+
+Manager view also supports filtering names by queries such as names using a specific name, names used by a specific name, or the type of name.
+
+![Manager](https://user-images.githubusercontent.com/4489219/151072204-9cb5228f-988d-4335-bdb7-761471114f63.gif)
+
+
 
 ### Formula Editing
 The formula editor includes intellisense, inline errors, semantic renaming, and more.
+
 ![Editing](https://user-images.githubusercontent.com/4489219/151023910-384da066-693f-4ef9-b249-540320fde6e3.gif)
 
 ### Formula Formatting
