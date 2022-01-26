@@ -8,6 +8,8 @@ Create and edit named formulas using a powerful formula editor. With the advance
 
 The advanced formula environment works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store.
 
+The Microsoft Garage is an outlet for experimental projects for you to try. Learn more at https://garage.microsoft.com. 
+
 This repository contains documentation and examples only.
 
 ## Features
