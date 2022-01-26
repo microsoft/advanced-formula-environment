@@ -19,8 +19,6 @@ Manager view also supports filtering names by queries such as names using a spec
 
 ![Manager](https://user-images.githubusercontent.com/4489219/151072204-9cb5228f-988d-4335-bdb7-761471114f63.gif)
 
-
-
 ### Formula Editing
 The formula editor includes intellisense, inline errors, semantic renaming, and more.
 
@@ -35,6 +33,20 @@ The formula text can be formatted using the full screen formula editor. The add-
 ### Import
 
 ### Editor View
+An alternate representation of the name manager is Editor view. In Editor view, names are listed as assignments within a single code editor, making it easier to freely edit multiple names simultaneously.
+Names are defined using the syntax `name = formula;`, for example:
+```
+addOne = LAMBDA(x, x + 1);
+test = addOne(10) = 11;
+```
+The default code editor tab is called `Workbook`. Additional _namespaces_ can be created to make it easier to add names without duplication.
+Within namespace `math`, the name `plus` can be defined and referenced directly. When `plus` is saved to the Name Manager, all references to the name are qualified by the namespace. 
+
+![Editor](https://user-images.githubusercontent.com/4489219/151191434-8c624524-baab-42b4-8b58-fc50721bf71f.gif)
+
+Namespaces make it possible to quickly copy existing definitions into your workbook without conflict. `Workbook` is unique in that names defined within are saved in their unqualified form.
+
+Namespaces are an experimental feature aimed to make the process of reusing names easier. Namespaces are not (yet) designed to be a robust mechanism for formula reuse and modularity. We are interested to hear your feedback about sharing formulas. 
 
 
 ## Contributing
