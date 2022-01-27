@@ -33,6 +33,13 @@ The formula text can be formatted using the full screen formula editor. The add-
 ![Formatting](https://user-images.githubusercontent.com/4489219/151000609-fb7374cd-8d65-4e02-9608-87ec2a9195cc.gif)
 
 ### Import
+Existing definitions can be imported into a working using two methods: using GitHub gist URL, or pasting a text snippet.
+
+#### Import from gist
+Import via a gist, such as [this](https://gist.github.com/jack-williams/5859d170fcb363dad1620c4d40770527). All the names in the gist will be added to the workbook. If you choose to import into a new namespace, each imported name will be prefixed by the namespace. This can be a good way to import names without worrying about conflicts with existing names. We assume each gist contains a single text file.
+
+#### Import from text
+Import from text allows you to paste a series of name definitions into a text field and add them to the workbook. This feature is designed to be used with snippets created by the share button in the add-in. When you share a name from the add-in, we will include any names that the shared name references, ensuring that it works in any workbook.
 
 ### Editor View
 An alternate representation of the name manager is Editor view. In Editor view, names are listed as assignments within a single code editor, making it easier to freely edit multiple names simultaneously.
