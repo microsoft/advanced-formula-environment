@@ -6,7 +6,7 @@ Create and edit named formulas using a powerful formula editor. With the advance
 - Edit all named formulas using a single code editor.
 - Quickly reuse LAMBDA formulas by importing them from GitHub gists, or by copying them for other workbooks.
 
-The advanced formula environment works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store.
+The advanced formula environment works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store: https://aka.ms/get-afe.
 
 The Microsoft Garage is an outlet for experimental projects for you to try. Learn more at https://garage.microsoft.com. 
 
