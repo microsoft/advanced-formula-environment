@@ -29,7 +29,7 @@ The first time you sync names, AFE will present a dialogue asking you to allow h
 <img width="339" alt="image" src="https://user-images.githubusercontent.com/4489219/153856568-096f13f9-36e1-4115-b7a5-9ca52a39589b.png">
 
 
-This choice can be changed at any time. See [Changing Modes](documentation.md/#changing-modes).
+This choice can be changed at any time. See [Changing Modes](Name_Sync.md/#changing-modes).
 
 ## Why have two modes?
 AFE allows users to write comments within a formula, such as.
