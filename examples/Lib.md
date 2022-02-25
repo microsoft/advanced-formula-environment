@@ -16,7 +16,7 @@ test_text =
     , test_stack_depth
     , test_textsplit
     , test_vstack
-    , pair_test
+    , test_pair
     , test_v_concat
     );
     
@@ -241,7 +241,7 @@ let(c_row_counts, map(c_array_thunks, lambda(thunk, rows(thunk()))),
 pair = LAMBDA(x_1,x_2, LAMBDA(j,switch(j,1,x_1,2,x_2)));
 fst = LAMBDA(p, p(1));
 snd = LAMBDA(p, p(2));
-pair_test = go(  lambda(snd(pair( {1,2}, {3,4} ))), {3,4} );
+test_pair = go(  lambda(snd(pair( {1,2}, {3,4} ))), {3,4} );
 
 // ======================================================================================================
 // Pairs: number pairs encoded as a text. Faster than LAMBDA encoded pairs.
