@@ -17,6 +17,7 @@ test_text =
     , test_textsplit
     , test_vstack
     , pair_test
+    , test_v_concat
     );
     
 DoIt =
@@ -198,8 +199,9 @@ test_vstack =
 // ======================================================================================================
 // Array concatenation: functions to make row and column vectors
 
-sample_input = column_vector(lambda({1;2;3}), lambda({"four";5}), lambda({6}));
-test_v_concat = v_concat(sample_input);
+test_v_concat =
+  LET(sample_input, column_vector(lambda({1;2;3}), lambda({"four";5}), lambda({6})),
+      go( lambda(v_concat(sample_input)), {1;2;3;"four";5;6} ));
 
 seq_or = lambda(b_1,b_2,if(b_1,true,b_2));
 
