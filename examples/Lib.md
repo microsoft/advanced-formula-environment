@@ -17,7 +17,8 @@ test_text =
     , test_textsplit
     , test_vstack
     , test_pair
-    , test_v_concat
+    , test1_v_concat
+    , test2_v_concat
     );
     
 DoIt =
@@ -26,9 +27,7 @@ DoIt =
      , results, snd(ms_value)
      , results_text, index(results,1,1) // coerce from [1x1] array sometimes returned by textjoin
      , header, "Total DoIt time " & ms & "ms||"
-    //, x, textsplit( header,"|")
     , transpose(textsplit(header & results_text,"|"))
-    //, header
   );
 
 // ======================================================================================================
@@ -146,7 +145,7 @@ test_textsplit =
 // ======================================================================================================
 // Vectors: functions to make row and column vectors
 
-row_vector =
+r_vector =
 lambda([x_1],[x_2],[x_3],[x_4],[x_5],[x_6],[x_7],[x_8],[x_9],[x_10],
 let(w, ifs(isomitted(x_1),0,
            isomitted(x_2),1,
@@ -163,9 +162,9 @@ let(w, ifs(isomitted(x_1),0,
     if(w=0,#null!,array)
 ));
 
-column_vector =
+c_vector =
 lambda([x_1],[x_2],[x_3],[x_4],[x_5],[x_6],[x_7],[x_8],[x_9],[x_10],
-let(row, row_vector(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10),
+let(row, r_vector(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10),
     col, if(type(row)=64,transpose(row),row),
     col
 ));
@@ -197,17 +196,23 @@ test_vstack =
     );
 
 // ======================================================================================================
-// Array concatenation: functions to make row and column vectors
+// Array concatenation: v_concat { thunk1; ... thunkN } where each thunki=lambda(arrayi)
+// computes the vertical stack of array1,...,arrayN, with blank padding to the right.
 
-test_v_concat =
-  LET(sample_input, column_vector(lambda({1;2;3}), lambda({"four";5}), lambda({6})),
-      go( lambda(v_concat(sample_input)), {1;2;3;"four";5;6} ));
+test1_v_concat =
+  LET(sample_input, c_vector(lambda({1,10;2,20;3,30}), lambda({"four";5}), lambda({1,2,3})),
+      go( lambda(vconcat(sample_input)), {1,10,"";2,20,"";3,30,"";"four","","";5,"","";1,2,3} ));
+
+test2_v_concat =
+  let(sample_input, c_vector(lambda({1,10;2,20;3,30})),
+      go( lambda(vconcat(sample_input)), {1,10;2,20;3,30} ));
 
 seq_or = lambda(b_1,b_2,if(b_1,true,b_2));
 
-v_concat = lambda(c_array_thunks,
+vconcat = lambda(c_array_thunks,
 let(c_row_counts, map(c_array_thunks, lambda(thunk, rows(thunk()))),
     total_rows, sum(c_row_counts),
+    max_columns, reduce(1,c_array_thunks,lambda(acc,thunk,max(acc,columns(thunk())))),
     // coord(i) = pair(i_thunk,row_within_thunk)
     coord_0, num_pair(0,0),
     scanner, lambda(p,_,
@@ -223,14 +228,14 @@ let(c_row_counts, map(c_array_thunks, lambda(thunk, rows(thunk()))),
              )
       )),
     coords, scan(coord_0, sequence(total_rows), scanner),
-    maker, lambda(i,_,
+    maker, lambda(i,j,
       let(p, index(coords,i,1),
           i_thunk, num_fst(p),
           row_within_thunk, num_snd(p),
-          thunk, index(c_array_thunks,i_thunk,1),
-          item, index(thunk(),row_within_thunk,1),
-          item )),
-    result, makearray(total_rows,1,maker),
+          array, index(c_array_thunks,i_thunk,1)(),
+          item, if(j<=columns(array),index(array,row_within_thunk,j),""),
+          item)),
+    result, makearray(total_rows,max_columns,maker),
     result
 ));
 
