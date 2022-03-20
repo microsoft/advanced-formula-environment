@@ -55,6 +55,9 @@ TYPE_Logical = 4;
 TYPE_Error = 16;
 TYPE_Array = 64;
 
+is_text = lambda(value, type(value)=TYPE_Text);
+is_error = lambda(value, type(value)=TYPE_Error);
+
 // typeof
 typeof = lambda(value,
   switch( type(value)
@@ -195,6 +198,20 @@ test_vstack =
     , {1,2,3,4,"";5,6,7,8,"";9,10,11,12,"";1,2,3,4,5;6,7,8,9,10;11,12,13,14,15;16,17,18,19,20}
     );
 
+// hstack(array_1,array_2) returns the array obtained by stacking array_1 and array_2 horizontally.
+hstack =
+  LAMBDA(array_1,array_2,
+    LET(rows_1, ROWS(array_1),
+        rows_2, ROWS(array_2),
+        cols_1, COLUMNS(array_1),
+        cols_2, COLUMNS(array_2),
+        blank, " ",
+        makearray(MAX(rows_1,rows_2), cols_1+cols_2, lambda(i,j,
+          IF(j<=cols_1,
+             IF(i<=rows_1,INDEX(array_1,i,j),blank),
+             IF(i<=rows_2,INDEX(array_2,i,j-cols_1),blank)) ))
+    ));
+
 // ======================================================================================================
 // Array concatenation: v_concat { thunk1; ... thunkN } where each thunki=lambda(arrayi)
 // computes the vertical stack of array1,...,arrayN, with blank padding to the right.
@@ -240,6 +257,25 @@ let(c_row_counts, map(c_array_thunks, lambda(thunk, rows(thunk()))),
 ));
 
 // ======================================================================================================
+// Flatten 2D matrix into row or column vector.
+
+flatten_to_row =
+LAMBDA(array,
+LET(rows, ROWS(array),
+    cols, COLUMNS(array),
+    array, makearray(1,rows*cols,lambda(i,j, index(array,floor.math((j-1)/cols)+1,mod(j-1,cols)+1) )),
+    array
+));
+
+flatten_to_column =
+LAMBDA(array,
+LET(rows, ROWS(array),
+    cols, COLUMNS(array),
+    array, makearray(rows*cols,1,lambda(i,j, index(array,floor.math((i-1)/cols)+1,mod(i-1,cols)+1) )),
+    array
+));
+
+// ======================================================================================================
 // Pairs: encoded with LAMBDA, so we can store arbitrary values including arrays
 // We can store these in arrays, because we can store LAMBDA in arrays, but not in cells.
 
@@ -254,4 +290,19 @@ test_pair = go(  lambda(snd(pair( {1,2}, {3,4} ))), {3,4} );
 num_pair = LAMBDA(x_1,x_2, x_1&":"&x_2);
 num_fst = LAMBDA(p, let(colon,find(":",p), x_1,left(p,colon-1), numbervalue(x_1)));
 num_snd = LAMBDA(p, let(colon,find(":",p), x_2,right(p,len(p)-colon), numbervalue(x_2)));
+
+
+// ======================================================================================================
+// set of strings represented as #NULL! (if the set is empty), or a row vector (if set is non-empty)
+// Remember that a single string looks and behaves like a 1x1 array
+
+empty_set = #NULL!;
+is_empty_set = is_error;
+union = lambda(set_1, set_2,
+  if(is_empty_set(set_1), set_2,
+  if(is_empty_set(set_2), set_1,
+  unique(Lib.hstack(set_1,set_2),TRUE))));
+set_from_spaced_string = lambda(string, IF(string="",empty_set,Lib.textsplit(string," ")));
+spaced_string_from_set = lambda(set, TEXTJOIN(" ",TRUE,set));
+member = LAMBDA(quarry,set,IF(is_empty_set(set),FALSE,REDUCE(FALSE,set,lambda(acc,item,OR(acc,item=quarry)))));
 ```
