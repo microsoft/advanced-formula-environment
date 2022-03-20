@@ -17,8 +17,8 @@ test_text =
     , test_textsplit
     , test_vstack
     , test_pair
-    , test1_v_concat
-    , test2_v_concat
+    , test_1_vconcat
+    , test_2_vconcat
     );
     
 DoIt =
@@ -113,14 +113,16 @@ nfib = LAMBDA(n,
 );
 test_nfib = go(lambda( nfib(22) ), 57313);
 
+mytest = go(LAMBDA( nfib(22 )), 57313);
+
 // stack depth - test how deep we can go
 // when stack depth exceeded, we get the #NUM! error
 // for example, stack_depth(342)=#NUM!
-stack_depth = LAMBDA(depth,
-  IF(depth<=1, 1, 1+stack_depth(depth-1))
+stackdepth = LAMBDA(depth,
+  IF(depth<=1, 1, 1+stackdepth(depth-1))
 );
 d=5300; // 5300 works
-test_stack_depth = go( lambda(stack_depth(d)), d );
+test_stack_depth = go( lambda(stackdepth(d)), d );
 
 // ======================================================================================================
 // Function to split a text into words separated by the delimiter symbol
@@ -216,11 +218,11 @@ hstack =
 // Array concatenation: v_concat { thunk1; ... thunkN } where each thunki=lambda(arrayi)
 // computes the vertical stack of array1,...,arrayN, with blank padding to the right.
 
-test1_v_concat =
+test_1_vconcat =
   LET(sample_input, c_vector(lambda({1,10;2,20;3,30}), lambda({"four";5}), lambda({1,2,3})),
       go( lambda(vconcat(sample_input)), {1,10,"";2,20,"";3,30,"";"four","","";5,"","";1,2,3} ));
 
-test2_v_concat =
+test_2_vconcat =
   let(sample_input, c_vector(lambda({1,10;2,20;3,30})),
       go( lambda(vconcat(sample_input)), {1,10;2,20;3,30} ));
 
@@ -290,7 +292,6 @@ test_pair = go(  lambda(snd(pair( {1,2}, {3,4} ))), {3,4} );
 num_pair = LAMBDA(x_1,x_2, x_1&":"&x_2);
 num_fst = LAMBDA(p, let(colon,find(":",p), x_1,left(p,colon-1), numbervalue(x_1)));
 num_snd = LAMBDA(p, let(colon,find(":",p), x_2,right(p,len(p)-colon), numbervalue(x_2)));
-
 
 // ======================================================================================================
 // set of strings represented as #NULL! (if the set is empty), or a row vector (if set is non-empty)
