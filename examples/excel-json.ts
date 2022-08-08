@@ -1,5 +1,6 @@
 // json-excel.ts
 // Load this code file using ScriptLab to make JSON functionality available as custom functions in Excel
+// Documentation: https://docs.microsoft.com/en-us/office/dev/add-ins/excel/excel-data-types-overview
 
 /**
  * GET JSON from URL.
