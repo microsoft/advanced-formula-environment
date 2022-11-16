@@ -1,17 +1,21 @@
 # Advanced formula environment, a Microsoft Garage project
 
-Create and edit named formulas using a powerful formula editor. With the advanced formula environment you can:
-- Write named formulas using an editor that supports inline errors, intellisense, comments, and more.
-- Indent formulas, making them easier to read.
-- Edit all named formulas using a single code editor.
-- Quickly reuse LAMBDA formulas by importing them from GitHub gists, or by copying them for other workbooks.
+Create and edit formulas using a powerful formula editor. With the advanced formula environment you can:
+- View, format, and edit formulas defined in the grid with an advanced formula bar.
+- Define and edit named functions, ranges, and formulas that can be synchronised with the Name Manager.
+- Create collections of named functions called modules that are defined as code and stored as part of the Workbook.
+- Quickly import LAMBDA modules directly from GitHub gists.
 
 The advanced formula environment (AFE) works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store: https://aka.ms/get-afe.
 
 The Microsoft Garage is an outlet for experimental projects for you to try. Learn more at https://garage.microsoft.com.
 
-We currently only support one locale where `,` is the argument separator and `;` is the name assignment separator. Localization feature requests can be tracked under Issues.
+#### Localisation
 
+AFE has some support for localisation of formulas and no support for localisation of app text. Formulas in AFE must be edited using a comma argument separator, such as `=SUM(1,2,3)`, however AFE will interact with workbooks using other separators such as semi-colon (`;`). When reading or saving a formula, AFE will automatically translate between formats. Function names can be written using the workbook’s locale, but AFE provides a setting to force English function names.
+AFE will eventually support full formula localisation, rather than requiring comma argument separators.
+
+#### Content
 This repository contains documentation and examples only.
 
 ## Features
