@@ -6,7 +6,7 @@ Create and edit formulas using a powerful formula editor. With the advanced form
 - Create collections of named functions called modules that are defined as code and stored as part of the Workbook.
 - Quickly import LAMBDA modules directly from GitHub gists.
 
-The advanced formula environment (AFE) works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store: https://aka.ms/get-afe.
+The advanced formula environment (AFE) works in Excel for Desktop, Web, and Mac, without installing any additional software. All you need to do to get started is get the add-in from the Office store: https://aka.ms/get-afe. Once installed, you can find AFE under the Formulas tab in Excel.
 
 The Microsoft Garage is an outlet for experimental projects for you to try. Learn more at https://garage.microsoft.com.
 
