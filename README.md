@@ -11,9 +11,7 @@ The advanced formula environment (AFE) works in Excel for Desktop, Web, and Mac,
 The Microsoft Garage is an outlet for experimental projects for you to try. Learn more at https://garage.microsoft.com.
 
 #### Localisation
-
-AFE has some support for localisation of formulas and no support for localisation of app text. Formulas in AFE must be edited using a comma argument separator, such as `=SUM(1,2,3)`, however AFE will interact with workbooks using other separators such as semi-colon (`;`). When reading or saving a formula, AFE will automatically translate between formats. Function names can be written using the workbook’s locale, but AFE provides a setting to force English function names.
-AFE will eventually support full formula localisation, rather than requiring comma argument separators.
+AFE supports formula localisation, including argument separators such as `,` and `;`, and function names. By default, all formulas, including those in modules, will be translated to the workbook's locale. AFE provides a setting to fix all formulas to English.
 
 #### Content
 This repository contains documentation and examples only.
@@ -21,10 +19,9 @@ This repository contains documentation and examples only.
 ## Features
 
 ### Grid view
-The default page is the Grid page, which displays the currently selected cell. AFE will format the formula to fit within the window, and will convert the formula to a single line when commiting back to the workbook.
+The default page is the Grid page, which displays the currently selected cell. AFE will format the formula to fit within the window, and will convert the formula to a single line when commiting back to the workbook. AFE provides a setting to preserve the formula formatting from the cell.
 <br></br>
 ![Grid](https://user-images.githubusercontent.com/4489219/202216103-d8cc0f11-1054-4ab1-81c5-c5e96f097ee8.gif)
-
 
 ### Name manager
 The Names tab is a manager for the names defined in the workbook. AFE categorises names as functions, ranges, or formulas. The modules tab is used to track collections of named formulas defined using additional code files.
